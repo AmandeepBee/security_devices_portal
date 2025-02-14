@@ -39,7 +39,7 @@ passowrd = config.get(env, "password")
 eastern_time = pytz.timezone("US/Eastern")
 
 
-class BasePage(unittest.TestCase):
+class BasePage:
     """
     This is base web action class
     """
@@ -56,7 +56,6 @@ class BasePage(unittest.TestCase):
         )
         self.env_timeout = 1
         self.timeout_multiplier = 1
-        super().__init__()
         try:
             self.env_timeout = 1
         except NoOptionError:
@@ -413,6 +412,32 @@ class BasePage(unittest.TestCase):
             else:
                 alert.dismiss()
                 return alert_text
+
+    def wait_for_element_to_display(self, locator):
+        """
+        This method will wait for element to be visible
+        """
+        try:
+            WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located(locator),
+                "Timed out waiting for alert to appear",
+            )
+            return True
+        except TimeoutException:
+            return False
+
+    def wait_for_element_to_clickable(self, locator):
+        """
+        This method will wait for element to be visible
+        """
+        try:
+            WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable(locator),
+                "Timed out waiting for alert to appear",
+            )
+            return True
+        except TimeoutException:
+            return False
 
     def if_alert_present(self):
         try:

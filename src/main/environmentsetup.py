@@ -1,16 +1,15 @@
 import logging
-import os
-import platform
-import subprocess
-import time
 import unittest
 from datetime import datetime
+import pytest
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.remote.remote_connection import RemoteConnection
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+
+from src.main.pages.login_actions import LoginPage
 
 time_stamp = datetime.now().strftime("%m/%d/%Y")
 # Configure logging
@@ -25,23 +24,24 @@ class TestBase(unittest.TestCase):
 
     driver = None
 
-    def setUp(self):
-        super(TestBase, self).setUp()
+    @pytest.fixture(scope="function")
+    def driver_request(request):
+        """
+        Pytest fixture to initialize and close the WebDriver.
+        """
+        chrome_options = Options()
+        chrome_options.add_argument("--start-maximized")
         try:
-            chrome_options = Options()
-            chrome_options.add_argument("--start-maximized")
-            self.driver = webdriver.Chrome(options=chrome_options)
-            self.driver.maximize_window()
-            return self.driver
-        except WebDriverException as e:
-            print(e)
-        except Exception as e:
-            raise Exception(e)
-        self.screenshot_counter = 0
+            driver = webdriver.Chrome(options=chrome_options)
+            driver.maximize_window()
+            request.driver = driver
+            yield driver
 
-    def tearDownClass(self):
-        super(TestBase, self).tearDownClass()
-        # obj_login = LoginPage(self.driver)
-        # obj_login.page_refresh()
-        # obj_login.click_logout()
-        self.driver.quit()
+        except WebDriverException as e:
+            logger.error(f"WebDriverException: {e}")
+            pytest.fail(f"WebDriverException: {e}")
+        except Exception as e:
+            logger.error(f"Unexpected Exception: {e}")
+            pytest.fail(f"Unexpected Exception: {e}")
+        finally:
+            driver.quit()

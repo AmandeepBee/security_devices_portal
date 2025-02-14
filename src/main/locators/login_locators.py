@@ -20,5 +20,5 @@ class LoginLocators(object):
 
     LOGOUT_BTN_XPATH = (
         By.XPATH,
-        '//i[contains(@class, "fa-sign-out-alt")]/ancestor::li',
+        '//i[contains(@class, "fa-sign-out-alt")]/..',
     )
