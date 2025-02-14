@@ -1,11 +1,7 @@
-import os
-
 import pytest
 
 from ddt import ddt, data, unpack
 from src.main.environmentsetup import TestBase
-
-from datetime import datetime
 
 from src.main.pages.login_actions import LoginPage
 
@@ -22,10 +18,8 @@ class GcwNewLoginTest(TestBase):
         """
         try:
             self.tc_id = "TS_c1"
-            self.tc_desc = (
-                "Verify user is able login to new GCW desktop portal"
-            )
-            
+            self.tc_desc = "Verify user is able login to new GCW desktop portal"
+
             login = LoginPage(self.driver)
 
             self.tc_step = "Login to GCW desktop portal"

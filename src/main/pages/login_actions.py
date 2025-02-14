@@ -1,6 +1,3 @@
-
-
-
 from configparser import ConfigParser
 import os
 import time
@@ -14,12 +11,12 @@ class LoginPage(BasePage):
     """
     This class is used for loing verification
     """
-    
+
     config = ConfigParser()
     project_root = os.path.dirname(os.path.dirname(__file__))
     config_path = os.path.join(project_root, "config")
     config.read(config_path)
-    env = os.getenv("TARGET_ENV", 'test')
+    env = os.getenv("TARGET_ENV", "test")
     gcw_new_desktop_url = config.get(env, "gcw_new_desk_url")
     gcw_new_mobile_url = config.get(env, "gcw_new_mob_url")
     user_name = config.get(env, "username")
@@ -27,10 +24,9 @@ class LoginPage(BasePage):
 
     eastern_time = pytz.timezone("US/Eastern")
 
-
     def get_gcw_new_portal_desktop_url(self):
         """
-        This method will get new portal desktop url 
+        This method will get new portal desktop url
         """
         self.driver.get(self.gcw_new_desktop_url)
 
@@ -50,7 +46,7 @@ class LoginPage(BasePage):
         home_tab_displayed = self.is_displayed(LoginLocators.HOME_PAGE_TAB_XPATH)
         if not home_tab_displayed:
             raise AssertionError("Seems login page not loading, please check")
-        
+
     def logout_from_portal(self):
         """
         This method will logout from portal

@@ -14,3 +14,4 @@ pytest-ordering==0.6
 pyautogui==0.9.53
 wget~=3.2
 pytest-xdist==3.6.1
+black
