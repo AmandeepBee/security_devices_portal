@@ -1,18 +1,13 @@
 import pytest
 
-from ddt import ddt, data, unpack
 from src.main.environmentsetup import TestBase
-
 from src.main.pages.login_actions import LoginPage
 
 
-@ddt
-class GcwNewLoginTest(TestBase):
+class TestGcwNewLogin(TestBase):
 
-    @pytest.mark.c1
+    @pytest.mark.smoke
     @pytest.mark.usefixtures("driver_request")
-    @data(())
-    @unpack
     def test_c1_login_to_new_gcw_desktop_portal(self):
         """
         This test will login to new desktop portal of GCW

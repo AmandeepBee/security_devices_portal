@@ -1,8 +1,6 @@
 import calendar
 import os
-import platform
 import time
-import unittest
 
 from configparser import NoOptionError, ConfigParser
 
