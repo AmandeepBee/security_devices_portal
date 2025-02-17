@@ -1,17 +1,17 @@
 import pytest
 
-from src.main.environmentsetup import TestBase
 from src.main.pages.login_actions import LoginPage
 
 
-class TestGcwNewLogin(TestBase):
+class TestGcwNewLogin():
+
 
     @pytest.mark.smoke
-    @pytest.mark.usefixtures("driver_request")
-    def test_c1_login_to_new_gcw_desktop_portal(self):
+    def test_c1_login_to_new_gcw_desktop_portal(self, driver):
         """
         This test will login to new desktop portal of GCW
         """
+        self.driver = driver
         try:
             self.tc_id = "TS_c1"
             self.tc_desc = "Verify user is able login to new GCW desktop portal"
