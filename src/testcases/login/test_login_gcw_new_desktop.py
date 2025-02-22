@@ -1,10 +1,9 @@
 import pytest
 
-from src.main.pages.login_actions import LoginPage
+from src.main.pages.login_actions import LoginPageActions
 
 
-class TestGcwNewLogin():
-
+class TestGcwNewLogin:
 
     @pytest.mark.smoke
     def test_c1_login_to_new_gcw_desktop_portal(self, driver):
@@ -16,7 +15,7 @@ class TestGcwNewLogin():
             self.tc_id = "TS_c1"
             self.tc_desc = "Verify user is able login to new GCW desktop portal"
 
-            login = LoginPage(self.driver)
+            login = LoginPageActions(self.driver)
 
             self.tc_step = "Login to GCW desktop portal"
             login.login_to_new_desktop_portal()

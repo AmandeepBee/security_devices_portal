@@ -7,26 +7,22 @@ from src.main.locators.login_locators import LoginLocators
 from src.main.webactions import BasePage
 
 
-class LoginPage(BasePage):
+class LoginPageActions(BasePage):
     """
-    This class is used for loing verification
+    This class is used for login action
     """
 
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+    config = ConfigParser()
+    project_root = os.path.dirname(os.path.dirname(__file__))
+    config_path = os.path.join(project_root, "config")
+    config.read(config_path)
+    env = os.getenv("TARGET_ENV", "test")
+    gcw_new_desktop_url = config.get(env, "gcw_new_desk_url")
+    gcw_new_mobile_url = config.get(env, "gcw_new_mob_url")
+    user_name = config.get(env, "username")
+    passowrd = config.get(env, "password")
 
-        config = ConfigParser()
-        project_root = os.path.dirname(os.path.dirname(__file__))
-        config_path = os.path.join(project_root, "config")
-        config.read(config_path)
-        env = os.getenv("TARGET_ENV", "test")
-        self.gcw_new_desktop_url = config.get(env, "gcw_new_desk_url")
-        self.gcw_new_mobile_url = config.get(env, "gcw_new_mob_url")
-        self.user_name = config.get(env, "username")
-        self.passowrd = config.get(env, "password")
-
-        self.eastern_time = pytz.timezone("US/Eastern")
+    eastern_time = pytz.timezone("US/Eastern")
 
     def get_gcw_new_portal_desktop_url(self):
         """

@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 class LoginLocators(object):
     """
-    This section if for login page locators.
+    This section is for login page locators.
     """
 
     USER_NAME_TEXT_BOX_XPATH = (
