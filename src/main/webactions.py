@@ -357,9 +357,7 @@ class BasePage:
         :@param driver :get locator from locators module
         """
         element = self.find_element(locators)
-        element.is_selected()
-        self.find_element(locators).click()
-        return element
+        return element.is_selected()
 
     def set_checkbox_status(self, locator, status):
         """
@@ -773,7 +771,7 @@ class BasePage:
             EC.invisibility_of_element_located((LOADING_ICON))
         )
 
-    def get_length(self, locator):
+    def get_count_of_elements(self, locator):
         """
         This method is used to get length
         :return:
