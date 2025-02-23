@@ -6,6 +6,7 @@ from src.main.pages.login_actions import LoginPageActions
 class TestGcwNewLogin:
 
     @pytest.mark.smoke
+    @pytest.mark.c1
     def test_c1_login_to_new_gcw_desktop_portal(self, driver):
         """
         This test will login to new desktop portal of GCW
