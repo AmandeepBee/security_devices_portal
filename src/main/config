@@ -1,5 +1,5 @@
 [test]
-gcw_new_desk_url = https://custom-tracwater-portal.tracwater.net.au/home
-gcw_new_mob_url = https://custom-tracwater-mobile.tracwater.net.au/
-username = lw
-password = demo8A
+gcw_new_desk_url = (mention URL)
+gcw_new_mob_url = (mention URL)
+username = (mention username)
+password = (mention password)
